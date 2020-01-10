@@ -1,4 +1,6 @@
-A library for Dart developers.
+EventNotifier
+
+A publish/subscribe library.
 
 Created from templates made available by Stagehand under a BSD-style
 [license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
@@ -8,11 +10,18 @@ Created from templates made available by Stagehand under a BSD-style
 A simple usage example:
 
 ```dart
-import 'package:event_broker/event_broker.dart';
+import 'package:eventnotifier/eventnotifier.dart';
 
 main() {
-  var awesome = new Awesome();
-}
+    var b = EventNotifier();
+    b.register('mine');
+    b.subscribe('mine', (_) => print('boom'));
+    b.subscribe('mine', (args) => print(args[0]));
+    assert(b.count == 1);
+    b.publish('mine', [99]);
+    b.remove('mine');
+    assert(b.count == 0);
+  }
 ```
 
 ## Features and bugs
