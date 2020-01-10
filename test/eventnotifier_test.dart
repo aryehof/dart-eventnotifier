@@ -1,4 +1,4 @@
-import 'package:EventNotifier/eventnotifier.dart';
+import 'package:eventnotifier/eventnotifier.dart';
 import 'package:test/test.dart';
 
 void main() {
