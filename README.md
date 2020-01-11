@@ -1,27 +1,22 @@
-EventNotifier
+## EventNotifier
 
-A publish/subscribe library.
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Broadcasts named events to interested subscribers. When an event occurs, a method (callbacks) associated with the subscriber is executed.
 
 ## Usage
 
-A simple usage example:
+A simple usage example (see the test static EventNotifier method):
 
 ```dart
 import 'package:eventnotifier/eventnotifier.dart';
 
 main() {
-    var b = EventNotifier();
-    b.register('mine');
-    b.subscribe('mine', (_) => print('boom'));
-    b.subscribe('mine', (args) => print(args[0]));
-    assert(b.count == 1);
-    b.publish('mine', [99]);
-    b.remove('mine');
-    assert(b.count == 0);
-  }
+  var e = EventNotifier();
+  e.subscribe('mine', (_) => print('boom'));
+  e.subscribe('mine', (args) => print(args[0]));
+  assert(e.count() == 1);
+  assert(e.count('mine') == 2);
+  e.notify('mine', [99]);
+}
 ```
 
 ## Features and bugs
