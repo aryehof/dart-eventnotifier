@@ -1,8 +1,12 @@
-## EventNotifier
+# EventNotifier
 
 Broadcasts named events to interested subscribers. When an event occurs, a method (callback) associated with the subscriber is executed.
 
-This is primarily intended to be mixed-in with a domain model to support change notifications.
+EventNotifier is an implementation of the observer pattern, providing the ability to publish events, and subscribe to them elsewhere. Such implementations are sometimes called an 'Event Broker' or 'Event Bus'.
+
+This is primarily intended to be mixed-in with a problem domain model to support change notifications.
+
+There are no non-development dependencies on other packages.
 
 ## Usage
 
@@ -29,4 +33,4 @@ main() {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/aryehof/outira-eventnotifier/issues
+[tracker]: https://github.com/aryehof/eventnotifier/issues
