@@ -2,6 +2,8 @@
 
 Broadcasts named events to interested subscribers. When an event occurs, a method (callbacks) associated with the subscriber is executed.
 
+This is primarily intended to be mixed-in with a domain model to support change notifications.
+
 ## Usage
 
 A simple usage example (see the test static EventNotifier method):
@@ -11,11 +13,15 @@ import 'package:eventnotifier/eventnotifier.dart';
 
 main() {
   var e = EventNotifier();
-  e.subscribe('mine', (_) => print('boom'));
-  e.subscribe('mine', (args) => print(args[0]));
+  e.subscribe('myevent', (_) => print('boom'));
+  e.subscribe('myevent', (args) => print(args[0]));
   assert(e.count() == 1);
-  assert(e.count('mine') == 2);
-  e.notify('mine', [99]);
+  assert(e.count('myevent') == 2);
+  e.notify('myevent', [99]);
+
+  // displays ...
+  // boom
+  // 99
 }
 ```
 
@@ -23,4 +29,4 @@ main() {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/aryehof/outira-eventnotifier/issues
