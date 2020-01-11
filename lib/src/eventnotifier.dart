@@ -5,7 +5,7 @@ import 'package:eventnotifier/src/error.dart';
 typedef NotificationCallback = void Function(List<dynamic> args);
 
 /// Broadcasts named events to interested subscribers.
-/// When an event occurs, a method (callbacks) associated with the subscriber is executed.
+/// When an event occurs, a method (callback) associated with the subscriber is executed.
 class EventNotifier {
   final _eventMap = <String, List<NotificationCallback>>{};
   int _version = 0;
