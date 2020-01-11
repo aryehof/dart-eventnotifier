@@ -1,6 +1,6 @@
-name: EventNotifier
-description: A starting point for Dart libraries or applications.
-# version: 1.0.0
+name: eventnotifier
+description: Broadcasts named events to interested subscribers. When an event occurs, a method (callbacks) associated with the subscriber is executed.
+version: 1.0.0
 # homepage: https://www.example.com
 
 environment:
