@@ -1,6 +1,6 @@
 ## EventNotifier
 
-Broadcasts named events to interested subscribers. When an event occurs, a method (callbacks) associated with the subscriber is executed.
+Broadcasts named events to interested subscribers. When an event occurs, a method (callback) associated with the subscriber is executed.
 
 This is primarily intended to be mixed-in with a domain model to support change notifications.
 
