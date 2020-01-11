@@ -42,8 +42,7 @@ class EventNotifier {
         _microtaskVersion = _version;
 
         // Convert the Set to a List before executing each listener. This
-        // prevents errors that can arise if a listener removes itself during
-        // invocation!
+        // prevents errors that can arise if a listener removes itself duringinvocation
         _eventMap[eventName].toList().forEach((NotificationCallback callback) => callback(args));
         // print('notify: called handler for "$eventName" with args: $args');
       });
