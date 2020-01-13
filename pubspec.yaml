@@ -1,6 +1,7 @@
 name: eventnotifier
+version: 1.0.2
+author: Aryeh Hoffman <aryehof@gmail.com>
 description: Broadcasts named events to interested subscribers. When an event occurs, a method (callback) associated with the subscriber is executed.
-version: 1.0.1
 homepage: https://github.com/aryehof/eventnotifier
 
 environment:
