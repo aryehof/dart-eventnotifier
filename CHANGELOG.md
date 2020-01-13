@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.03  (2020-01-13)
+
+- Package example updated to show the static test() method.
+- Add a link to EventSubscriber in the README.
+
 ## Version 1.0.2  (2020-01-12)
 
 - Removed support for optional event arguments. Query the model instead.

@@ -14,25 +14,27 @@ It can be ideal to model problems or systems independent of _user interfaces_ (U
 
 However, given an independent model, how can something else outside it know if something in the domain model changed?  The answer is to use `EventNotifier`.
 
-## An Illustration
+### An Illustration
 
 Consider that one wanted to model the operation of a single 'Elevator'. One might produce an independent domain model in object-oriented Dart code that modeled it.
 
-Later, one might want to provide a user interface (UI) that let one interact with the model, or provide a system interface that interacted with (for example) the [Programmable Logic Controller (PLC)][plc] of a real-life Elevator (SI).
+Later, one might want to provide a user interface (UI) that let one interact with the model, or provide a system interface (SI) that interacted with (for example) the [Programmable Logic Controller (PLC)][plc] of a real-life Elevator.
 
 In order to let external modules or systems know that the Elevator changed _floors_, the Elevator model can notify them through `EventNotifier`, so they can react as appropriate.
-
-## Dependencies
-
-None. This Dart package has no non-development dependencies on any other packages.
 
 ## Flutter as User Interface (UI)
 
 If one wants to use `Flutter` as a user interface for an independent domain model, then there needs to be some way for Widgets to be notified that something has changed in the domain model. In our Elevator example model, the Elevator might be changing floors, but how would your Flutter Widget displaying the current floor number know that and update?
 
-The answer is to subscribe to an event in the domain model using an [EventSubscriber][eventsubscriber] Flutter widget.  This simple widget, allows one to subscribe to one or more named EventNotifier events. The Widget will be rebuilt when a subscribed event occurs, allowing some changing aspect of the model to be displayed in your Flutter user interface.
+The answer is to subscribe to an event in the domain model using an [EventSubscriber][eventsubscriber].  This simple widget, allows one to subscribe to one or more named EventNotifier events. The Widget will be rebuilt when a subscribed event occurs, allowing some changing aspect of the model to be displayed in your Flutter user interface.
 
-See [EventSubscriber][eventsubscriber]
+## See also
+
+[EventSubscriber][eventsubscriber] - subscribe to named `EventNotifier` events in `Flutter`
+
+## Dependencies
+
+None. This Dart package has no non-development dependencies on any other packages.
 
 ## Usage
 
@@ -66,5 +68,5 @@ main() {
 Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: https://github.com/aryehof/eventnotifier/issues
-[eventsubscriber]: http://example.com
+[eventsubscriber]: https://pub.dev/packages/eventsubscriber
 [plc]: https://en.wikipedia.org/wiki/programmable_logic_controller
