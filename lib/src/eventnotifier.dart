@@ -69,14 +69,20 @@ class EventNotifier {
     }
   }
 
-  /// Test EventNotifier functionality
+  /// Test functionality, run EventNotifier.test()
   static void test() {
     var e = EventNotifier();
-    e.subscribe('mine', () => print('boom'));
-    e.subscribe('mine', () => print('another'));
-    assert(e.count() == 1); // number of event names
-    assert(e.count('mine') == 2); // number of handlers subscribed to the event name
-    e.notify('mine');
+
+    e.subscribe('myChange', () => print('boom'));
+    e.subscribe('myChange', () => print('another'));
+
+    // number of event names
+    assert(e.count() == 1);
+    // number of handlers subscribed to the event name
+    assert(e.count('myChange') == 2);
+
+    // indicate that event 'myChange' has occured
+    e.notify('myChange');
 
     // displays ...
     // boom
