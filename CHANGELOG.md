@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.0.4  (2020-01-13)
+
+- Fixed LICENSE reference to package
+
 ## Version 1.0.3  (2020-01-13)
 
 - Package example updated to show the static test() method.
