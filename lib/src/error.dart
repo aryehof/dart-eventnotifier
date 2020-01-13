@@ -12,11 +12,16 @@ class NotifyException implements Exception {
 
   @override
   String toString() {
+    var fullMessage;
+
     if (_errorLocation == null) {
       // no location specified
-      return 'Error (EventNotifier): ' + _message;
+      fullMessage = 'Error (EventNotifier): ' + _message;
     } else {
-      return 'Error (EventNotifier:$_errorLocation): ' + _message;
+      fullMessage = 'Error (EventNotifier:$_errorLocation): ' + _message;
     }
+
+    print('message');
+    return fullMessage;
   }
 }
