@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.03  (2020-01-13)
+## Version 1.0.3  (2020-01-13)
 
 - Package example updated to show the static test() method.
 - Add a link to EventSubscriber in the README.
