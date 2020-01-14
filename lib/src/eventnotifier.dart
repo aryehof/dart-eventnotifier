@@ -68,7 +68,7 @@ class EventNotifier {
   }
 
   // Get  the EventNotifier instance. Useful when EventNotifier is mixed-in with a domain model.
-  EventNotifier getNotifier() {
+  EventNotifier getEventNotifier() {
     return this;
   }
 
