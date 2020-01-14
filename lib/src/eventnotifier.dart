@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:eventnotifier/src/error.dart';
 
-typedef VoidCallback = void Function();
+typedef NotificationCallback = void Function(List<dynamic> args);
 
 /// Broadcasts named events to interested subscribers.
 /// When an event occurs, a method (callback) associated with the subscriber is executed.
 class EventNotifier {
-  final _eventMap = <String, List<VoidCallback>>{};
+  final _eventMap = <String, List<NotificationCallback>>{};
   int _version = 0;
   int _microtaskVersion = 0;
 
   /// Subscribe the provided method (callback) to the specified named event.
-  void subscribe(String eventName, VoidCallback method) {
+  void subscribe(String eventName, NotificationCallback method) {
     if (eventName.isEmpty) throw NotifyException('no eventName provided', 'subscribe');
     if (method == null) throw NotifyException('a method (callback) is required', 'subscribe');
 
@@ -26,15 +26,8 @@ class EventNotifier {
   /// Notify each subscriber that the specified named event has occured.
   /// An optional list of arguments can be atached to the notification
   /// e.g. myEventNotifier.notify('valueChanged', [99, 'something else']);
-  void notify(String eventName) {
-    if (!_eventMap.containsKey(eventName)) {
-      print(
-          'Warning (EventNotifier:notify): event "$eventName" notified, which has no subscribers');
-      return;
-    }
-
-    // We schedule a microtask to debounce multiple changes that can occur
-    // all at once.
+  void notify(String eventName, [List<dynamic> args]) {
+    // Schedule a microtask to debounce multiple changes that can occur all at once.
     if (_microtaskVersion == _version) {
       _microtaskVersion++;
       scheduleMicrotask(() {
@@ -43,14 +36,19 @@ class EventNotifier {
 
         // Convert the Set to a List before executing each callback. This
         // prevents errors that can arise if a callback removes itself during invocation
-        _eventMap[eventName].toList().forEach((VoidCallback callback) => callback());
-        // print('notify: called handler for "$eventName" with args: $args');
+        try {
+          _eventMap[eventName].toList().forEach((NotificationCallback callback) => callback(args));
+        } on NoSuchMethodError {
+          throw NotifyException(
+              'an argument expected by a subscriber, was not included in the notification for event "$eventName"',
+              'notify');
+        }
       });
     }
   }
 
   /// Remove the named event's callback
-  void remove(String eventName, VoidCallback callback) {
+  void remove(String eventName, NotificationCallback callback) {
     if (!_eventMap.containsKey(eventName))
       throw NotifyException('event name ("$eventName") not found', 'remove');
 
@@ -69,12 +67,17 @@ class EventNotifier {
     }
   }
 
+  // Get  the EventNotifier instance. Useful when EventNotifier is mixed-in with a domain model.
+  EventNotifier getNotifier() {
+    return this;
+  }
+
   /// Test functionality, run EventNotifier.test()
   static void test() {
     var e = EventNotifier();
 
-    e.subscribe('myChange', () => print('boom'));
-    e.subscribe('myChange', () => print('another'));
+    e.subscribe('myChange', (_) => print('boom'));
+    e.subscribe('myChange', (args) => print(args[0]));
 
     // number of event names
     assert(e.count() == 1);
@@ -82,7 +85,7 @@ class EventNotifier {
     assert(e.count('myChange') == 2);
 
     // indicate that event 'myChange' has occured
-    e.notify('myChange');
+    e.notify('myChange', [99]);
 
     // displays ...
     // boom
