@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:eventnotifier/src/error.dart';
 
-typedef NotificationCallback = void Function(List<dynamic> args);
+typedef NotificationCallback = void Function(Map<String, dynamic> args);
 
 /// Broadcasts named events to interested subscribers.
 /// When an event occurs, a method (callback) associated with the subscriber is executed.
@@ -24,9 +24,9 @@ class EventNotifier {
   }
 
   /// Notify each subscriber that the specified named event has occured.
-  /// An optional list of arguments can be atached to the notification
-  /// e.g. myEventNotifier.notify('valueChanged', [99, 'something else']);
-  void notify(String eventName, [List<dynamic> args]) {
+  /// An optional map of arguments can be atached to the notification
+  /// e.g. myEventNotifier.notify('valueChanged', {'age': 32);
+  void notify(String eventName, [Map<String, dynamic> args]) {
     // Schedule a microtask to debounce multiple changes that can occur all at once.
     if (_microtaskVersion == _version) {
       _microtaskVersion++;
@@ -77,7 +77,7 @@ class EventNotifier {
     var e = EventNotifier();
 
     e.subscribe('myChange', (_) => print('boom'));
-    e.subscribe('myChange', (args) => print(args[0]));
+    e.subscribe('myChange', (args) => print(args['pi']));
 
     // number of event names
     assert(e.count() == 1);
@@ -85,10 +85,12 @@ class EventNotifier {
     assert(e.count('myChange') == 2);
 
     // indicate that event 'myChange' has occured
-    e.notify('myChange', [99]);
+    // rguments are only required if a subscriber
+    // expects one or more
+    e.notify('myChange', {'pi': 3.14159});
 
     // displays ...
     // boom
-    // another
+    // 3.14159
   }
 }

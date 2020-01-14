@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 1.0.5  (2020-01-14)
+
+- Add support again for optional event arguments (was previously removed).
+Arguments should now be supplied as a Map, e.g. notify('myEvent', {'age': 32});
+- A more detailed error is shown if a subscriber expects an argument, but
+it isn't supplied when notified.
+- One can now access the EventNotifier using the getEventNotifier() method.
+Getting the instance can be useful from within a mixin.
+
 ## Version 1.0.4  (2020-01-13)
 
 - Fixed LICENSE reference to package
