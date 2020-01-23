@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.0  (2020-01-23)
+
+- Removed references to EventSubscriber, as it now supports [Event] rather than EventNotifier
+
+
 ## Version 1.0.5  (2020-01-14)
 
 - Add support again for optional event arguments (was previously removed).
@@ -31,3 +36,5 @@ Getting the instance can be useful from within a mixin.
 ## Version 1.0.0  (2020-01-11)
 
 - Initial release
+
+[event]: https://pub.dev/packages/event

@@ -24,9 +24,12 @@ class EventNotifier {
   }
 
   /// Notify each subscriber that the specified named event has occured.
-  /// An optional map of arguments can be atached to the notification
+  /// An optional map of arguments can be attached to the notification
   /// e.g. myEventNotifier.notify('valueChanged', {'age': 32);
   void notify(String eventName, [Map<String, dynamic> args]) {
+    // ignore if no subscribers
+    if (!_eventMap.containsKey(eventName)) return;
+
     // Schedule a microtask to debounce multiple changes that can occur all at once.
     if (_microtaskVersion == _version) {
       _microtaskVersion++;

@@ -22,15 +22,9 @@ Later, one might want to provide a user interface (UI) that let one interact wit
 
 In order to let external modules or systems know that the Elevator changed _floors_, the Elevator model can notify them through `EventNotifier`, so they can react as appropriate.
 
-## Flutter as User Interface (UI)
-
-If one wants to use `Flutter` as a user interface for an independent domain model, then there needs to be some way for Widgets to be notified that something has changed in the domain model. In our Elevator example model, the Elevator might be changing floors, but how would your Flutter Widget displaying the current floor number know that and update?
-
-The answer is to subscribe to an event in the domain model using an [EventSubscriber][eventsubscriber].  This simple widget, allows one to subscribe to one or more named EventNotifier events. The Widget will be rebuilt when a subscribed event occurs, allowing some changing aspect of the model to be displayed in your Flutter user interface.
-
 ## See also
 
-[EventSubscriber][eventsubscriber] - subscribe to named `EventNotifier` events in `Flutter`
+[Event] - Create lightweight custom Dart Events. An alternative to this centralized Event Bus/Event Broker approach.
 
 ## Dependencies
 
@@ -70,5 +64,5 @@ main() {
 Please file feature requests and bugs at the [issue tracker][tracker].
 
 [tracker]: https://github.com/aryehof/eventnotifier/issues
-[eventsubscriber]: https://pub.dev/packages/eventsubscriber
+[event]: https://pub.dev/packages/event
 [plc]: https://en.wikipedia.org/wiki/programmable_logic_controller
