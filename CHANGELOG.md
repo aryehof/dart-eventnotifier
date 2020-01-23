@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.1  (2020-01-23)
+
+- Added recommendation to generally use the [Event] package to the README.
+- Added licence header to source files.
+
 ## Version 1.1.0  (2020-01-23)
 
 - Removed references to EventSubscriber, as it now supports [Event] rather than EventNotifier

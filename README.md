@@ -2,6 +2,12 @@
 
 [![Pub Package](https://img.shields.io/pub/v/eventnotifier.svg?style=flat-square)](https://pub.dev/packages/eventnotifier)
 
+> NOTE: Consider using the [Event] package instead.
+
+> This package is an implementation of a central 'Event Bus' or 'Event Broker' which is suited to some specific use-cases.
+
+>In general, using a lightweight custom [Event] is a preferable way to have something that is independent of dependencies, inform others that something of interest has occurred.
+
 Broadcasts named events to interested subscribers. When an event occurs, a method (callback) associated with the subscriber is executed.
 
 EventNotifier is an implementation of the Observer Pattern, providing the ability to publish events, and subscribe to them elsewhere. Such implementations are sometimes called an 'Event Broker' or 'Event Bus'.
@@ -12,7 +18,7 @@ This is primarily intended to be mixed-in with a problem domain model, to enable
 
 It can be ideal to model problems or systems independent of _user interfaces_ (UI) or _system interfaces_ (SI). Doing so, one can model the problem or system without regard to how the model may (or may not be) consumed.
 
-However, given an independent model, how can something else outside it know if something in the domain model changed?  The answer is to use `EventNotifier`.
+However, given an independent model, how can something else outside it know if something in the domain model changed?  One solution is to use `EventNotifier`.
 
 ### An Illustration
 

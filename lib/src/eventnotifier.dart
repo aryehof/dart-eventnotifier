@@ -1,5 +1,8 @@
-import 'dart:async';
+// Copyright 2020 Aryeh Hoffman. All rights reserved.
+// Use of this source code is governed by an Apache-2.0 license that can be
+// found in the LICENSE file.
 
+import 'dart:async';
 import 'package:eventnotifier/src/error.dart';
 
 typedef NotificationCallback = void Function(Map<String, dynamic> args);
